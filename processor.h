@@ -43,8 +43,8 @@ struct commands
 struct cpu
 {
     int currcommand;//total command amount
-    commands coms;
-    stackt st,functst;
+    commands coms;//commands stack
+    stackt st,functst;//functst-stack for CALL,RET
     double ax,bx,cx,dx;//registers
 };
 

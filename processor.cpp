@@ -1,16 +1,5 @@
 #include "processor.h"
 
-/*
-TODO:
-    -   ÏÐÎÁÅËÛ
-    -   ÌÀÊÐÎÑÛ ÄËß ÏÐÎÂÅÐÊÈ
-    -   ÓÁÐÀÒÜ ÍÅ ÍÅÎÁÕÎÄÈÌÛÅ ÃËÎÁÀËÜÍÛÅ ÏÅÐÅÌÅÍÍÛÅ
-    -   ÓÁÐÀÒÜ ÌÀÃÈ×ÅÑÊÈÅ ×ÈÑËÀ
-    -   -> è * - ñäåëàòü ÷èòàáåëüíî
-    --  ÎÄÈÍ ÌÀÑÑÈÂ
-    -   out ax, out ch 54, out 5 -  âûâîä â êîíñîëü
-
-*/
 
 int readcommands(FILE *&F,cpu *CPU)
 {
@@ -28,6 +17,7 @@ int readcommands(FILE *&F,cpu *CPU)
         if (!F)
         {
             FILE *F2=fopen("3.txt","w");
+            assert(F2);
             fprintf(F2,"CODE NOT FOUND");
             break;
         }
@@ -140,8 +130,8 @@ int readcommands(FILE *&F,cpu *CPU)
     }
     while(command!=EXIT);
 }
-
-
+//TODO ÕÂÒÁÔØ ÓÓÙÌËÕ
+//TODO ÍÁÓÓÉ× ÓÔÒÕËÔÕÒ
 
 
 int CPUdocommands(cpu *CPU,FILE *&F2)
@@ -200,7 +190,7 @@ int CPUdocommands(cpu *CPU,FILE *&F2)
         case CALL:
         {
             stack_push(&((CPU)->functst),i);
-            i=(&(CPU)->coms)->value[3*i+1]-1;
+            i = CPU->coms.value[3*i+1]-1;
             break;
 
         }
@@ -294,6 +284,7 @@ int main()
     FILE *F2=fopen("3.txt","w");
     if(!F2)
     {
+        return 1;
         printf("SOMETHINK WENT WRONG,CANNOT CREATE OUTPUT FILE");
         return 1;
     }
@@ -309,7 +300,7 @@ int main()
     readcommands(F,&CPU_);
 
     CPUdocommands(&CPU_,F2);
-    printf("%d",errno);
+
     return 0;
 
 }

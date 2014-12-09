@@ -8,14 +8,6 @@ const double FAIL_POP=13.666;
 const int    POISON = -99;
 const int    NULL_ARGUMENT=-1;
 
-/*
-TODO
-
-    -    Проверка корректности возвращаемого значения стандартных функций
-    -    NO C++ HERE
-
-
-*/
 struct stackt
 {
     int Count = POISON;
